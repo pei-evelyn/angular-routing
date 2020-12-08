@@ -7,17 +7,21 @@ import { AppComponent } from './app.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { CrisisListComponent } from './crisis-list/crisis-list.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  { path: 'crisis-list', component: CrisisListComponent },
-  { path: 'hero-list', component: HeroListComponent },
+  { path: '', redirectTo: '/heroes', pathMatch: 'full' },
+  { path: 'crisis-center', component: CrisisListComponent },
+  { path: 'heroes', component: HeroListComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroListComponent,
-    CrisisListComponent
+    CrisisListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
