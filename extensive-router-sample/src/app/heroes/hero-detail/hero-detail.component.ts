@@ -21,10 +21,14 @@ export class HeroDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.hero$ = this.route.paramMap.pipe(
+    this.hero = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.service.getHeroes(params.get('id')))
+        this.service.getHero(params.get('id')))
     );
   }
 
+  gotoHeroes(hero: Hero) {
+    const heroId = hero ? hero.id : null;
+    this.router.navigate(['/heroes', {id: heroId, foo: 'foo'}]);
+  }
 }
