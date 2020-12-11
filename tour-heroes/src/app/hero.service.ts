@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HEROES } from './mock-heroes';
 import { Hero } from './hero';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  constructor(private messageService: MessageService) { }
+  url = 'https://jsonplaceholder.typicode.com/users';
+
+  constructor(
+    private messageService: MessageService,
+    private http: HttpClient) { }
 
   getHeroes(): Observable<Hero[]> {
-    this.messageService.add('Heroes Fetched!')
-    return of(HEROES);
+    this.log('Heroes Fetched!');
+    return this.http.get<Hero[]>(this.url);
   }
 
   getHero(id: number): Observable<Hero> {
-    this.messageService.add(`Hero gotten: id ${id}`);
-    return of(HEROES.find(hero => hero.id === id));
+    const idUrl = this.url + id;
+    this.log(`Hero found! id ${id}`);
+    return this.http.get<Hero>(idUrl);
+  }
+
+  private log(message:string) {
+    this.messageService.add(`HeroService: ${message}`);
   }
 }
