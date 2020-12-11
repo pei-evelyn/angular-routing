@@ -1,0 +1,16 @@
+a {
+  background-color: rgb(110, 158, 199);
+  border-radius: 5px;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: rgb(196, 195, 195);
+  color: rgb(110, 158, 199);
+}
+
+a:nth-child(1) {
+  margin-right: 10px;
+}
