@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let animal of animals">
+    <a [routerLink]="['/animals', animal.name]">
+      {{animal.name}}
+    </a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>
